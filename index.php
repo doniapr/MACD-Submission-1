@@ -26,10 +26,10 @@
        <input type="submit" name="load_data" value="Load Data" />
  </form>
  <?php
-    $host = "<Nama server database Anda>";
-    $user = "<Nama admin database Anda>";
-    $pass = "<Password admin database Anda>";
-    $db = "<Nama database Anda>";
+    $host = "macdsubmission.database.windows.net";
+    $user = "doniapr@macdsubmission";
+    $pass = "Admin@123";
+    $db = "MacdSubsDatabase";
 
     try {
         $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
@@ -45,7 +45,7 @@
             $job = $_POST['job'];
             $date = date("Y-m-d");
             // Insert data
-            $sql_insert = "INSERT INTO Registration (name, email, job, date) 
+            $sql_insert = "INSERT INTO Registration (name, email, job, date)
                         VALUES (?,?,?,?)";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $name);
@@ -62,7 +62,7 @@
         try {
             $sql_select = "SELECT * FROM Registration";
             $stmt = $conn->query($sql_select);
-            $registrants = $stmt->fetchAll(); 
+            $registrants = $stmt->fetchAll();
             if(count($registrants) > 0) {
                 echo "<h2>People who are registered:</h2>";
                 echo "<table>";
